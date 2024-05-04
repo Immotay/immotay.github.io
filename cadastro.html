@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Cadastro de Times de Corrida</h1>
-    <form action="processar_cadastro.php" method="POST" id="cadastroForm">
+    <form id="cadastroForm">
         <fieldset>
             <legend>Dados do Time</legend>
             <label for="nome_time">Nome do Time:</label><br>
@@ -24,8 +24,22 @@
             <!-- Os campos de pilotos serão adicionados aqui -->
         </fieldset>
 
-        <input type="submit" value="Cadastrar Time">
+        <input type="button" value="Cadastrar Time" onclick="exibirCadastro()">
     </form>
+
+    <h2>Cadastros de Times de Corrida</h2>
+    <table id="tabelaCadastros">
+        <thead>
+            <tr>
+                <th>Nome do Time</th>
+                <th>Carro</th>
+                <th>Pilotos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Os cadastros serão exibidos aqui -->
+        </tbody>
+    </table>
 
     <script>
         function adicionarCamposPilotos() {
@@ -51,6 +65,23 @@
                 `;
                 camposPilotos.appendChild(fieldset);
             }
+        }
+
+        function exibirCadastro() {
+            var nomeTime = document.getElementById('nome_time').value;
+            var carro = document.getElementById('carro').value;
+            var quantidadePilotos = document.getElementById('quantidade_pilotos').value;
+            var tabelaCadastros = document.getElementById('tabelaCadastros').getElementsByTagName('tbody')[0];
+
+            var newRow = tabelaCadastros.insertRow();
+
+            var cell1 = newRow.insertCell(0);
+            var cell2 = newRow.insertCell(1);
+            var cell3 = newRow.insertCell(2);
+
+            cell1.innerHTML = nomeTime;
+            cell2.innerHTML = carro;
+            cell3.innerHTML = quantidadePilotos;
         }
     </script>
 </body>
